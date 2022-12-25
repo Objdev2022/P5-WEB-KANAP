@@ -42,11 +42,8 @@ function displayItem(item) {
         //////
         
         const cartItemContent = makeCartItemContent(item)
-
-        //const cartItemSetting = makeSetting(item)
-
+       
         article.appendChild(cartItemContent)
-        //article.appendChild(cartItemSetting)
         
         displayArticle(article)
         displayTotalQuantity(item)
@@ -71,15 +68,22 @@ function makeImageDiv(item){
 function makeArticle(item) {
 
     const article = document.createElement("article")
-    article.classList.add("#cart__items")
+    article.classList.add("cart__item")
     article.dataset.id = item.id
     article.dataset.color = item.color
     return article
 }
 
 function displayArticle(article) {
-
+    
     document.querySelector("#cart__items").appendChild(article)
+    
+}
+
+function displaySectionFlex() {
+
+    document.querySelector(".cart").style = "flex"
+   //document.querySelector(".cart").justifyContent = "space-between"
 
 }
 
@@ -115,7 +119,7 @@ function makeDescription(item) {
 
     const p1 = document.createElement("p")
     p1.textContent = item.price +" €"  // alt+0128
-
+    
     description.appendChild(h2)
     description.appendChild(p)
     description.appendChild(p1)
@@ -255,7 +259,7 @@ function DeleteArticleFromPage(item) {
 }
 
 function submitform(e){
-    //alert("Formulaire envoyé avec succés")
+    //écouter l'événement mais ne rien faire
     e.preventDefault() // ne pas rafraichir le formulaire //
 
     if (cartes.length === 0 ) {
@@ -280,11 +284,12 @@ function submitform(e){
 
     })
     
+    
     .then ((resp) => resp.json())
     .then ((data) => {
        const orderId = data.orderId
        window.location.href = ("confirmation.html" + "?orderId=" + orderId)
-       
+       console.log(data)
     })
     .catch((err) => console.error(err))  // le message s'affiche ne rouge
     
@@ -336,12 +341,17 @@ function isFormValide() {
      //querySelectorAll retourne une liste d'élément //
      // queryselector retourn un seule élément//
      
+     
      inputs.forEach((input) => {
             if (input.value === "") 
             {
             alert ("Veuillez remplir le champs vide")
+            input.onfocus()
+            input.select()
             return true
+         
             }
+            
         return false
      })
 }

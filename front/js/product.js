@@ -1,5 +1,8 @@
 const queryString = window.location.search
+// une chaîne contenant un '?'suivi des paramètres de l'URL.
+
 const urlParams = new URLSearchParams(queryString)
+// création de l'url et permet d'accéder à ses éléments nom et id
 const id = urlParams.get("id")
 
 if (id != null) {
@@ -109,11 +112,17 @@ const key = `${id}-${color}`
 }
 
 function IsOrderInvalid(color, quantity){
+    if (quantity > 100) {
+        alert ("La quantité doit être inférieur à 100")
+        return true
+    }
     if (color == null || color == "" || quantity == null || quantity == 0) {
 
         alert ("Veuillez selectionner une couleur et une quantity")
         return true
        }
+
+   
 
 }
 

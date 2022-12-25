@@ -2,7 +2,7 @@ fetch("http://localhost:3000/api/products")
 .then((resp) => resp.json())
 .then((canapes) => addProduct(canapes))
 
-
+// données en format JSON //
 /*altTxt: 
 "Photo d'un canapé bleu, deux places"
 colors:: 
@@ -16,14 +16,7 @@ price:1849
 _id:"107fb5b75607497b96722bda5b504926"*/
 
 function addProduct(canapes){
-// récupération des données //
-	
-	//const _id = data[0]._id
-	//const imageUrl = data[0].imageUrl
-	//const altTxt = data[0].altTxt
-	//const name = data[0].name
-	//const description = data[0].description
-    
+  
 
 	
 	canapes.forEach(canape => {
